@@ -21,6 +21,6 @@ With GraphicE you can edit photos, draw and add any text.
  - write anythink what you want 
  - change colour of text
  
- 
+ ![alt-text] (https://github.com/robpon/GraphicE/blob/main/Screenshot%202021-06-19%20at%2022.28.52.png)
  
  
