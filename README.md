@@ -1,7 +1,7 @@
 # GraphicE
 GraphicE is simple graphic editor on web . 
 
-# What can I do with this?
+# What can you do with this?
 
 With GraphicE you can edit photos, draw and add any text.
  
