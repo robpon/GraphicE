@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja</title>
+</head>
+<body id="body">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="style.css" >
+<div class="all">
+<div id="left-div" class="left-container">
+<div  id="contents">
+<canvas id="canvas" height="100">
+</canvas>
+    <canvas id="canvas1">
+
+    </canvas>
+</div>
+
+</div>
+<div id="functions-div" class="right-container">
+
+
+    <div id="layers-list" class="settings-element">
+        <div class="title">Obiekty</div>
+        <div class="option">
+            <div class="centered">
+            <button class="new_obj" onclick="newObject('sketch')"><svg height="35" width="35" viewBox="0 0 60 60">
+                <path d="M10 30 C10 30, 20 10 , 30 30 C30 30, 40 50, 50 30" stroke-width="4" stroke="#dbdbdb" fill="none" ></path>
+            </svg></button>
+            <button onclick="newPhoto()" class="new_obj">
+                <svg height="35" width="35" viewBox="0 0 60 60">
+                    <path d="M10 10 L50 10 L50 50 L 10 50 Z M10 40 L20 30 L30 40 L40 20 L50 35" stroke-width="4" stroke="#dbdbdb" fill="none" ></path>
+                </svg>
+            </button>
+            <input class="hidden" height="0" width="0" id="newPhoto" type="file"  onchange="newObject('photo')" value="New Photo">
+            <button class="new_obj" onclick="newObject('title')"><svg height="35" width="35" viewBox="0 0 60 60">
+                <path d="M10 50 L30 10 L50 50 M18 30 L42 30" stroke-width="4" stroke="#dbdbdb" fill="none" ></path>
+            </svg></button>
+            </div>
+        </div><!--
+        <button onclick="add_layer()">Dodaj warstwę</button>
+-->
+
+                <div id="list" class="list">
+
+        </div>
+        <button id="export" onclick="exportPhoto()">Wyeksportuj</button>
+
+    </div>
+    <div id="layer-elements" class="settings-element">
+        <div class="title">Ustawienia</div>
+        <div id="list1" class="list">
+<div id="drawing-options" class="hidden">
+    <div class="option" onclick="colour('1')">
+    <button class="roundButton" style="background-color: #000000" ></button>
+    <div class="text">Czarny</div>
+    </div>
+    <div class="option" onclick="colour('2')">
+    <button class="roundButton" style="background-color: #03FF0081" onclick="colour('2')"></button>
+        <div class="text">Zielony</div>
+    </div>
+    <div class="option" onclick="colour('3')">
+    <button class="roundButton" style="background-color: #02ddf3" onclick="colour('3')"></button>
+        <div class="text">Niebieski</div>
+    </div>
+    <div class="option" onclick="colour('4')">
+        <button class="roundButton" style="background-color: #fc0505" onclick="colour('4')"></button>
+        <div class="text">Czerwony</div>
+
+    </div>
+    <div class="option" onclick="colour('5')">
+        <button class="roundButton" style="background-color: #5e00bf" onclick="colour('5')"></button>
+        <div class="text">Fioletowy</div>
+
+    </div>
+    <div class="option" onclick="colour('6')">
+        <button class="roundButton" style="background-color: #e36ecd" onclick="colour('6')"></button>
+        <div class="text">Różowy</div>
+
+    </div>
+    <div class="option" onclick="colour('7')">
+        <button class="roundButton" style="background-color: #faff00" onclick="colour('7')"></button>
+        <div class="text">Żółty</div>
+
+    </div>
+    <div class="option">
+        <input type="range" min="1" max="200" value="2" class="slider" id="drawSize">
+        <div class="text">Grubość pędzla to : 2 px</div>
+    </div>
+    <div class="option">
+        <input type="range" min="1" max="100" value="100" class="slider" id="drawOpacity">
+        <div class="text">Przeźroczystość : </div>
+    </div>
+    </div>
+
+
+
+
+        </div>
+        <div id="photo-options" class="hidden">
+<div class="option">
+    <div class="centered">
+    <button class="new_obj" onclick="editTypeSet('1')"><svg height="35" width="35" viewBox="0 0 60 60">
+        <path d="M10 30 C10 30, 20 10 , 30 30 C30 30, 40 50, 50 30" stroke-width="4" stroke="#dbdbdb" fill="none" ></path>
+    </svg></button>
+    <button class="new_obj" onclick="editTypeSet('2')"><svg height="35" width="35" viewBox="0 0 60 60">
+        <path d="M15 35 L10 30 L15 25 M10 30 L50 30 M45 35 L50 30 L45 25 M25 15 L30 10 L35 15 M30 10  L30 50 M25 45 L30 50 L35 45" stroke-width="4" stroke="#dbdbdb" fill="none" ></path>
+    </svg></button>
+    <button class="new_obj" onclick="editTypeSet('3')"><svg height="35" width="35" viewBox="0 0 60 60">
+        <path d="M10 30 L10 10 L30 10  M30 50 L50 50 L50 30 " stroke-width="4" stroke="#dbdbdb" fill="none" ></path>
+
+    </svg></button>
+    </div>
+</div>
+            <div class="option">
+                <input type="range" min="0" max="100" value="0" class="slider" id="1P" onchange="filter('1')">
+                <div class="text">Rozmazanie : </div>
+            </div>
+            <div class="option">
+            <input type="range" min="0" max="200" value="100" class="slider" id="2P" onchange="filter('2')">
+            <div class="text">Jasność : </div>
+            </div>
+            <div class="option">
+                <input type="range" min="0" max="200" value="100" class="slider" id="3P" onchange="filter('3')">
+                <div class="text">Kontrast : </div>
+            </div>
+            <div class="option">
+                <input type="range" min="0" max="100" value="0" class="slider" id="4P" onchange="filter('4')">
+                <div class="text">Cień : </div>
+            </div>
+            <div class="option">
+                <input type="range" min="0" max="100" value="0" class="slider" id="5P" onchange="filter('5')">
+                <div class="text">Szarość : </div>
+            </div>
+            <div class="option">
+                <input type="range" min="0" max="100" value="0" class="slider" id="6P" onchange="filter('6')">
+                <div class="text">Rotacja : </div>
+            </div>
+            <div class="option">
+                <input type="range" min="0" max="100" value="0" class="slider" id="7P" onchange="filter('7')">
+                <div class="text">Odwracanie : </div>
+            </div>
+            <div class="option">
+                <input type="range" min="0" max="100" value="100" class="slider" id="8P" onchange="filter('8')">
+                <div class="text">Przeźroczystość : </div>
+            </div>
+            <div class="option">
+                <input type="range" min="0" max="100" value="100" class="slider" id="9P" onchange="filter('9')">
+                <div class="text">Saturacja : </div>
+            </div>
+
+            <div class="option">
+                <input type="range" min="0" max="200" value="0" class="slider" id="10P" onchange="filter('10')">
+                <div class="text">Sepia : </div>
+            </div>
+        </div>
+        <div id="title-options" class="hidden">
+            <div class="option" >
+<div class="centered">
+    <button class="new_obj" onclick="editTypeSet('1')">
+        <svg height="35" width="35" viewBox="0 0 60 60">
+            <path d="M10 30 C10 30, 20 10 , 30 30 C30 30, 40 50, 50 30" stroke-width="4" stroke="#dbdbdb" fill="none" ></path>
+        </svg>
+    </button>
+    <button class="new_obj" onclick="editTypeSet('2')">
+        <svg height="35" width="35" viewBox="0 0 60 60">
+            <path d="M15 35 L10 30 L15 25 M10 30 L50 30 M45 35 L50 30 L45 25 M25 15 L30 10 L35 15 M30 10  L30 50 M25 45 L30 50 L35 45" stroke-width="4" stroke="#dbdbdb" fill="none" ></path>
+        </svg>
+    </button>
+</div>
+            </div>
+            <div class="option">
+                <input type="text" id="textAdder">
+            </div>
+            <div class="option">
+               <input id="textRang" type="range" min="1" max="60" value="15" onchange="textSize()">
+            </div>
+            <div class="option" onclick="colour('1')">
+                <button class="roundButton" style="background-color: #000000" ></button>
+                <div class="text">Czarny</div>
+            </div>
+            <div class="option" onclick="colour('2')">
+                <button class="roundButton" style="background-color: #03FF0081" onclick="colour('2')"></button>
+                <div class="text">Zielony</div>
+            </div>
+            <div class="option" onclick="colour('3')">
+                <button class="roundButton" style="background-color: #02ddf3" onclick="colour('3')"></button>
+                <div class="text">Niebieski</div>
+            </div>
+            <div class="option" onclick="colour('4')">
+                <button class="roundButton" style="background-color: #fc0505" onclick="colour('4')"></button>
+                <div class="text">Czerwony</div>
+
+            </div>
+            <div class="option" onclick="colour('5')">
+                <button class="roundButton" style="background-color: #5e00bf" onclick="colour('5')"></button>
+                <div class="text">Fioletowy</div>
+
+            </div>
+            <div class="option" onclick="colour('6')">
+                <button class="roundButton" style="background-color: #e36ecd" onclick="colour('6')"></button>
+                <div class="text">Różowy</div>
+
+            </div>
+            <div class="option" onclick="colour('7')">
+                <button class="roundButton" style="background-color: #faff00" onclick="colour('7')"></button>
+                <div class="text">Żółty</div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="elements-settings" class="hidden">
+
+    </div>
+</div>
+    <script src="js.js"></script>
+</div>
+<div class="hidden" id="realCanvasSize">
+
+</div>
+</body>
+</html>
