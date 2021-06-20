@@ -707,7 +707,7 @@ ctx.drawImage(canvas, x*proportion,y*proportion);
     }
     //document.body.appendChild(doc);
     var link = document.createElement('a');
-    link.download = 'filename.png';
+    link.download = 'photo.png';
 
 
     link.href = doc.toDataURL("image/png");
