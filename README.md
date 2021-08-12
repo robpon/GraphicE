@@ -1,4 +1,4 @@
-# GraphicE-V.1.0 (old version)
+# GraphicE-V.1.0 (first and old version)
 GraphicE is simple graphic editor on web . 
 
 # What can you do with this?
